@@ -69,6 +69,30 @@ a:active {
 	layout
 --------------------------------------------------------------- */
 
+#loader-wrap {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+	text-align: center;
+	-webkit-animation: fadeOut .2s linear 3s forwards;
+}
+
+#loader {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 20px;
+	height: 20px;
+	margin: -10px 0 0 -10px;
+	border-radius: 50%;
+	border: 5px solid rgba(0,0,0,.75);
+	border-right-color: transparent;
+	-webkit-animation: spin 1s linear infinite;
+}
+
 #glob {
 	position: relative;
 	width: 100%;
@@ -88,24 +112,11 @@ header {
 
 header > h1 {
 	margin-top: 20%;
-	-webkit-animation: bounceInDown 1s ease-in-out both;
+	-webkit-animation: bounceInDown 1s ease-in-out 3s both;
 }
 
-@-webkit-keyframes bounceInDown {
-	0% {
-		opacity: 0;
-		-webkit-transform: translateY(-2000px);
-	}
-	60% {
-		opacity: 1;
-		-webkit-transform: translateY(30px);
-	}
-	80% {
-		-webkit-transform: translateY(-10px);
-	}
-	100% {
-		-webkit-transform: translateY(0);
-	}
+#glob:target > header > h1 {
+	-webkit-animation-delay: 0;
 }
 
 #menu {
@@ -135,38 +146,35 @@ header > h1 {
 }
 
 #nav01 {
-	-webkit-animation-delay: .2s;
+	-webkit-animation-delay: 3.2s;
 }
 
 #nav02 {
-	-webkit-animation-delay: .4s;
+	-webkit-animation-delay: 3.4s;
 }
 
 #nav03 {
-	-webkit-animation-delay: .6s;
+	-webkit-animation-delay: 3.6s;
 }
 
 #nav04 {
-	-webkit-animation-delay: .8s;
+	-webkit-animation-delay: 3.8s;
 }
 
-@-webkit-keyframes bounceInUp {
-	0% {
-		opacity: 0;
-		-webkit-transform: translateY(2000px);
-	}
-	60% {
-		opacity: 1;
-		-webkit-transform: translateY(-30px);
-	}
-	80% {
-		opacity: 1;
-		-webkit-transform: translateY(10px);
-	}
-	100% {
-		opacity: 1;
-		-webkit-transform: translateY(0);
-	}
+#glob:target #nav01 {
+	-webkit-animation-delay: .2s;
+}
+
+#glob:target #nav02 {
+	-webkit-animation-delay: .4s;
+}
+
+#glob:target #nav03 {
+	-webkit-animation-delay: .6s;
+}
+
+#glob:target #nav04 {
+	-webkit-animation-delay: .8s;
 }
 
 footer {
@@ -218,21 +226,6 @@ footer small {
 	-webkit-animation: bounceUp .6s ease-out both;
 }
 
-@-webkit-keyframes bounceUp {
-	0% {
-		-webkit-transform: translateY(0);
-	}
-	20% {
-		-webkit-transform: translateY(30px);
-	}
-	80% {
-		-webkit-transform: translateY(-220px);
-	}
-	100% {
-		-webkit-transform: translateY(-180px);
-	}
-}
-
 .panel:target ~ header .btn {
 	-webkit-animation: bounceOutDown .6s ease-in both;
 }
@@ -251,21 +244,6 @@ footer small {
 
 .panel:target ~ header #nav04 {
 	-webkit-animation-delay: .8s;
-}
-
-@-webkit-keyframes bounceOutDown {
-	0% {
-		-webkit-transform: translateY(0);
-	}
-	30% {
-		-webkit-transform: translateY(-20px);
-	}
-	90% {
-		opacity: 0;
-	}
-	100% {
-		-webkit-transform: translateY(2000px);
-	}
 }
 
 .content {
@@ -313,4 +291,99 @@ footer small {
 .home a:hover {
 	background: #ffcc00;
 	color: #1D1716;
+}
+
+/* ---------------------------------------------------------------
+	keyframes
+--------------------------------------------------------------- */
+
+@-webkit-keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		z-index: 0;
+		opacity: 0;
+	}
+}
+
+@-webkit-keyframes spin {
+	0% {
+		-webkit-transform: rotate(0);
+		opacity: .2;
+	}
+	50% {
+		-webkit-transform: rotate(180deg);
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		opacity: .2;
+	}
+}
+
+@-webkit-keyframes bounceInDown {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateY(-2000px);
+	}
+	60% {
+		opacity: 1;
+		-webkit-transform: translateY(30px);
+	}
+	80% {
+		-webkit-transform: translateY(-10px);
+	}
+	100% {
+		-webkit-transform: translateY(0);
+	}
+}
+
+@-webkit-keyframes bounceInUp {
+	0% {
+		opacity: 0;
+		-webkit-transform: translateY(2000px);
+	}
+	60% {
+		opacity: 1;
+		-webkit-transform: translateY(-30px);
+	}
+	80% {
+		opacity: 1;
+		-webkit-transform: translateY(10px);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+	}
+}
+
+@-webkit-keyframes bounceUp {
+	0% {
+		-webkit-transform: translateY(0);
+	}
+	20% {
+		-webkit-transform: translateY(30px);
+	}
+	80% {
+		-webkit-transform: translateY(-220px);
+	}
+	100% {
+		-webkit-transform: translateY(-180px);
+	}
+}
+
+@-webkit-keyframes bounceOutDown {
+	0% {
+		-webkit-transform: translateY(0);
+	}
+	30% {
+		-webkit-transform: translateY(-20px);
+	}
+	90% {
+		opacity: 0;
+	}
+	100% {
+		-webkit-transform: translateY(2000px);
+	}
 }
